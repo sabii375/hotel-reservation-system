@@ -194,13 +194,13 @@
 
                                     <div class="col-md-6">
                                         <div class="form-floating date" id="date3" data-target-input="nearest">
-                                            <input th:text="*{#dates.format(dto.arrivalDate, 'dd-MM-yyyy')}" type="date" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
+                                            <input th:field="*{dto.arrivalDate}" type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
                                             <label for="checkin">Check In</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating date" id="date5" data-target-input="nearest">
-                                            <input th:text="*{#dates.format(dto.departureDate, 'dd-MM-yyyy')}" type="date" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                            <input th:field="*{dto.departureDate}" type="text" class="form-control datetimepicker-input" id="checko" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
                                             <label for="checkout">Check Out</label>
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-floating date" id="date4" data-target-input="nearest">
-                                            <input th:field="*{dto.numberOfKida}" type="number" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                            <input th:field="*{dto.numberOfKida}" type="number" class="form-control datetimepicker-input" id="chut" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
                                             <label for="checkout">Number of Kids</label>
                                         </div>
                                     </div>

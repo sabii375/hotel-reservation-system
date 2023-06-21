@@ -1,7 +1,6 @@
 package com.hotelReservation.HotelReservation.service.implementation;
 
 import com.hotelReservation.HotelReservation.repo.ContactRepo;
-import com.hotelReservation.HotelReservation.service.NewsletterService;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;

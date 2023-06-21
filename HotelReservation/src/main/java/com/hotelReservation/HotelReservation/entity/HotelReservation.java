@@ -23,15 +23,15 @@ public class HotelReservation {
     private Integer reserveNo;
 
     @Column(length = 25)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date reservedDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String reservedDate;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date arrivalDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String arrivalDate;
 
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date departureDate;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String departureDate;
 
     @Column(length = 20)
     private Integer numberOfAdults;

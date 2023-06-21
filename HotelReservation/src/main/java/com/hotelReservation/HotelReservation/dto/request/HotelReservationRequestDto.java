@@ -15,9 +15,9 @@ import java.util.Date;
 
 public class HotelReservationRequestDto {
 
-    private Date reserveDate;
-    private Date arrivalDate;
-    private Date departureDate;
+    private String reserveDate;
+    private String arrivalDate;
+    private String departureDate;
     private Integer numberOfAdults;
     private Integer numberOfKida;
 
