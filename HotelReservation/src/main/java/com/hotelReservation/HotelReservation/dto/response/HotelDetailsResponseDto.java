@@ -13,14 +13,22 @@ import lombok.Setter;
 
 public class HotelDetailsResponseDto {
     private Integer detailId;
-    private String bedType;
+    private String roomType;
     private Integer rate;
-    private Integer rooms;
+    private Integer availableRooms;
+    private String description;
+    private Integer numberOfBath;
+    private Integer numberOfBeds;
+    private Boolean wifi;
 
     public HotelDetailsResponseDto(HotelDetails saveInfo) {
         this.detailId= saveInfo.getDetailId();
-        this.bedType= saveInfo.getBedType();
+        this.roomType = saveInfo.getRoomType();
         this.rate= saveInfo.getRate();
-        this.rooms= saveInfo.getRooms();
+        this.wifi=saveInfo.getWifi();
+        this.numberOfBath=saveInfo.getNumberOfBath();
+        this.numberOfBeds= saveInfo.getNumberOfBath();
+        this.description= saveInfo.getDescription();
+        this.availableRooms = saveInfo.getAvailableRooms();
     }
 }

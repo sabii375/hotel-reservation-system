@@ -22,12 +22,18 @@ public class HotelDetailsServiceImplementation implements HotelDetailsService {
 
     @Override
     public HotelDetailsResponseDto saveAll(HotelDetailsRequestDto dto) {
+
         HotelDetails hotelDetails = new HotelDetails();
-        hotelDetails.setBedType(dto.getBedType());
+        hotelDetails.setWifi(dto.getWifi());
+        hotelDetails.setDescription(dto.getDescription());
+        hotelDetails.setNumberOfBeds(dto.getNumberOfBeds());
+        hotelDetails.setAvailableRooms(dto.getAvailableRooms());
         hotelDetails.setRate(dto.getRate());
-        hotelDetails.setRooms(dto.getRooms());
+        hotelDetails.setNumberOfBath(dto.getNumberOfBath());
+        hotelDetails.setRoomType(dto.getRoomType());
 
         HotelDetails saveInfo = hotelDetailsRepo.save(hotelDetails);
+
         return new HotelDetailsResponseDto(saveInfo);
 
     }
@@ -56,9 +62,9 @@ public class HotelDetailsServiceImplementation implements HotelDetailsService {
     public HotelDetailsResponseDto updateInfo(Integer id, HotelDetailsRequestDto dto) {
          HotelDetails searchingById = hotelDetailsRepo.findById(id).get();
 
-         searchingById.setBedType(dto.getBedType());
+         searchingById.setAvailableRooms(dto.getAvailableRooms());
          searchingById.setRate(dto.getRate());
-         searchingById.setRooms(dto.getRooms());
+         searchingById.setRoomType(dto.getRoomType());
 
          HotelDetails savedData = hotelDetailsRepo.save(searchingById);
          return new HotelDetailsResponseDto(savedData);

@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,12 +23,14 @@ public class HotelReservation {
     private Integer reserveNo;
 
     @Column(length = 25)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date reservedDate;
 
-    @Column(length = 20)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date arrivalDate;
 
-    @Column(length = 20)
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date departureDate;
 
     @Column(length = 20)
@@ -37,6 +41,14 @@ public class HotelReservation {
 
     @Column(length = 20)
     private Integer numberOfRoom;
+
+    @ManyToOne
+    @JoinColumn(name="room_id")
+    private HotelDetails room;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
 
 

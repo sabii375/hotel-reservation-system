@@ -33,4 +33,18 @@ public class MailController {
         return "redirect:/contact";
 
      }
+
+     @PostMapping("/newsletter-submit")
+     public String handleNewsletter(@ModelAttribute ContactRequestDto dto) {
+         contactService.saveMessage(dto);
+
+         String to = dto.getEmail();
+         String subject = "Thank you for your subscription";
+         String body = "Dear Customer. \n\n Thank you for subscribing our newsletter.";
+         emailServiceImplementation.sendMail(to, subject, body);
+
+         return ("redirect:/");
+
+     }
+
 }

@@ -36,6 +36,9 @@ public class User implements UserDetails {
 
     private String address;
 
+    @OneToMany(mappedBy = "user")
+    private List<HotelReservation> reservations;
+
 
 
 

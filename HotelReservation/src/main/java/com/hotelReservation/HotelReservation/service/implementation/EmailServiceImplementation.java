@@ -1,7 +1,7 @@
 package com.hotelReservation.HotelReservation.service.implementation;
 
 import com.hotelReservation.HotelReservation.repo.ContactRepo;
-import org.springframework.mail.SimpleMailMessage;
+import com.hotelReservation.HotelReservation.service.NewsletterService;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,13 @@ public class EmailServiceImplementation {
 
      private final JavaMailSender javaMailSender;
 
+
     public EmailServiceImplementation(ContactRepo contactRepo, JavaMailSender javaMailSender) {
          this.javaMailSender = javaMailSender;
-    }
+     }
 
     public void sendMail( String to, String subject, String body){
+
 //        SimpleMailMessage sendEmail = new SimpleMailMessage();
 //
 //        sendEmail.setTo(to);
@@ -33,11 +35,13 @@ public class EmailServiceImplementation {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(body);
-        helper.setFrom("beeplaw21@gmail.com");
+        helper.setFrom("sabii375375@gmail.com");
         javaMailSender.send(message);
 
     }catch (Exception e){
 
     }
+
+
     }
 }

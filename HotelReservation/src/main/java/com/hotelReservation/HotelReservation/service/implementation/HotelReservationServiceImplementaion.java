@@ -1,8 +1,12 @@
 package com.hotelReservation.HotelReservation.service.implementation;
 
 import com.hotelReservation.HotelReservation.dto.request.HotelReservationRequestDto;
+import com.hotelReservation.HotelReservation.dto.response.HotelDetailsResponseDto;
 import com.hotelReservation.HotelReservation.dto.response.HotelReservationResponseDto;
+import com.hotelReservation.HotelReservation.entity.HotelDetails;
 import com.hotelReservation.HotelReservation.entity.HotelReservation;
+import com.hotelReservation.HotelReservation.entity.User;
+import com.hotelReservation.HotelReservation.repo.HotelDetailsRepo;
 import com.hotelReservation.HotelReservation.repo.HotelReservationRepo;
 import com.hotelReservation.HotelReservation.service.HotelReservationService;
 import org.springframework.stereotype.Service;
@@ -14,8 +18,11 @@ public class HotelReservationServiceImplementaion implements HotelReservationSer
 
     private final HotelReservationRepo hotelReservationRepo;
 
-    public HotelReservationServiceImplementaion(HotelReservationRepo hotelReservationRepo) {
+    private final HotelDetailsRepo hotelDetailsRepo;
+
+    public HotelReservationServiceImplementaion(HotelReservationRepo hotelReservationRepo, HotelDetailsRepo hotelDetailsRepo) {
         this.hotelReservationRepo = hotelReservationRepo;
+        this.hotelDetailsRepo = hotelDetailsRepo;
     }
 
     @Override
@@ -29,11 +36,25 @@ public class HotelReservationServiceImplementaion implements HotelReservationSer
         saveInfo.setDepartureDate(dto.getDepartureDate());
 
 
+
         HotelReservation savedInfo = hotelReservationRepo.save(saveInfo);
         return new HotelReservationResponseDto(savedInfo);
 
 
     }
+    public void bindHotelWithReservation(Integer reservedId, Integer roomId, User foundUser){
+        HotelReservation foundReserved = hotelReservationRepo.findById(reservedId).get();
+        HotelDetails foundRoom = hotelDetailsRepo.findById(roomId).get();
+        foundReserved.setRoom(foundRoom);
+        foundReserved.setUser(foundUser);
+        HotelReservation newSaved = hotelReservationRepo.save(foundReserved);
+
+
+
+
+    }
+
+
 
     @Override
     public HotelReservationResponseDto findByUsingId(Integer id) {

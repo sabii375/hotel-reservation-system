@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,13 +21,14 @@ public class HotelDetails {
     private Integer detailId;
 
     @Column(length = 30)
-    private String bedType;
+    private String roomType;
+
 
     @Column(length = 10)
     private Integer rate;
 
     @Column(length = 30)
-    private Integer rooms;
+    private Integer availableRooms;
 
     private Integer numberOfBeds;
 
@@ -34,5 +36,8 @@ public class HotelDetails {
 
     private Boolean wifi;
 
+    private String description;
 
+    @OneToMany(mappedBy = "room")
+    private List<HotelReservation> reservations;
 }
