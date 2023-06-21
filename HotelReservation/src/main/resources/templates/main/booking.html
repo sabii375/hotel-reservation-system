@@ -192,16 +192,30 @@
                             <form id="book-form" th:action="@{/save-booking}" method="post">
                                 <div class="row g-3">
 
+<!--                                    <div class="col-md-6">-->
+<!--                                        <div class="form-floating date" id="date3" data-target-input="nearest">-->
+<!--                                            <input th:field="*{dto.arrivalDate}" type="text" class="form-control " id="checkin" placeholder="Check In"  />-->
+<!--                                            <label for="checkin">Check In</label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6">-->
+<!--                                        <div class="form-floating date" id="date5" data-target-input="nearest">-->
+<!--                                            <input th:field="*{dto.departureDate}" type="text" class="form-control datetimepicker-input" id="checko" placeholder="Check Out"  />-->
+<!--                                            <label for="checkout">Check Out</label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
                                     <div class="col-md-6">
-                                        <div class="form-floating date" id="date3" data-target-input="nearest">
-                                            <input th:field="*{dto.arrivalDate}" type="text" class="form-control datetimepicker-input" id="checkin" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
-                                            <label for="checkin">Check In</label>
+                                        <div class="form-floating date" data-target-input="nearest">
+                                            <input  type="text" class="form-control datetimepicker-input" id="checkout" th:field="*{dto.arrivalDate}" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                            <label for="checkout">Number Of Adults</label>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
-                                        <div class="form-floating date" id="date5" data-target-input="nearest">
-                                            <input th:field="*{dto.departureDate}" type="text" class="form-control datetimepicker-input" id="checko" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
-                                            <label for="checkout">Check Out</label>
+                                        <div class="form-floating date"  data-target-input="nearest">
+                                            <input th:field="*{dto.departureDate}" type="text" class="form-control datetimepicker-input" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                            <label for="checkout">Number Of Adults</label>
                                         </div>
                                     </div>
 
@@ -221,16 +235,15 @@
 
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <select
-                                                   th:field="*{detailsDto.roomType}" class="form-select" id="select3">
+                                            <select th:field="*{detailsDto.roomType}" class="form-select" id="select3">
                                               <option th:each="bed:${roomDetails}" th:value="${bed.roomType}" th:text="${bed.roomType}"></option>
 
                                             </select>
-                                            <label for="select3"  >Select A Room</label>
+                                            <label  >Select A Room</label>
                                           </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                        <input class="btn btn-primary w-100 py-3" type="submit">Book Now</input>
                                     </div>
                                 </div>
                             </form>

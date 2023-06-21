@@ -10,6 +10,7 @@ import com.hotelReservation.HotelReservation.repo.HotelDetailsRepo;
 import com.hotelReservation.HotelReservation.repo.UserRepo;
 import com.hotelReservation.HotelReservation.service.HotelDetailsService;
 import com.hotelReservation.HotelReservation.service.HotelReservationService;
+import com.hotelReservation.HotelReservation.service.implementation.EmailServiceImplementation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +32,7 @@ public class MainController {
     private final HotelReservationService hotelReservationService;
     private final HotelDetailsRepo hotelDetailsRepo;
     private final UserRepo userRepo;
+    private final EmailServiceImplementation emailServiceImplementation;
 
     @GetMapping("/")
     public String getIndex(){
@@ -56,30 +58,29 @@ public class MainController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-//        if (bindingResult.hasErrors()){
-//             return "redirect:/booking";
-//        }
+        if (bindingResult.hasErrors()){
+             return "redirect:/booking";
+        }
         User foundUser = userRepo.getUserByUsername(username);
 
-        System.out.println("Text sout");
-        System.out.println(detailsDto.getRoomType());
-        System.out.println(reservedDto.getReserveDate());
-        System.out.println(reservedDto.getNumberOfKida());
-        System.out.println(reservedDto.getNumberOfAdults());
-        System.out.println(reservedDto.getArrivalDate());
-        System.out.println(reservedDto.getDepartureDate());
-        System.out.println(foundUser.getAddress());
-        System.out.println(foundUser.getEmail());
-        System.out.println(foundUser.getFullName());
-        System.out.println(foundUser.getPassword());
-        System.out.println(foundUser.getReservations());
 
         HotelReservationResponseDto savedReserve = hotelReservationService.savedata(reservedDto);
 
         HotelDetails foundDetails = hotelDetailsRepo.findByRoomType(detailsDto.getRoomType());
         hotelReservationService.bindHotelWithReservation(savedReserve.getReserveNo(),foundDetails.getDetailId(),foundUser);
-        return "redirect:/";
 
+        //Sending the booking confirmatoin email
+        String subject = "Booking Confirmation";
+        String message = "Thank you for choosing to stay with us. "+
+                "\n\nYour Reservtion Details: "+
+                "\n Check-In Date: " + reservedDto.getArrivalDate()+
+                "\n Check-Out Date: " + reservedDto.getDepartureDate()+
+                "\n No of Adults: " + reservedDto.getNumberOfAdults()+
+                "\n No of Child:" + reservedDto.getNumberOfKida()+
+                "\n Room Type: " + detailsDto.getRoomType()+
+                "\n\n Enjoy your stay.";
+        emailServiceImplementation.sendMail(foundUser.getEmail(),subject, message);
+        return "redirect:/";
 
     }
 
