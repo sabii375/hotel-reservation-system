@@ -25,7 +25,8 @@ public class MailController {
         contactService.saveMessage(dto);
 
         String to = dto.getEmail();
-        String subject = "Thankyou for your message";
+        System.out.println(to); //debug line
+        String subject = "Thank you for your message";
         String body = "Dear Customer,\n\nThank you for contacting us. We have received your message and will get back to you soon.\n\nBest regards,\nThe Support Team";
         emailServiceImplementation.sendMail(to, subject, body) ;
 
