@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HotelReservationApplication implements CommandLineRunner {
 
 	private final HotelDetailsRepo hotelDetailsRepo;
+
 	public static void main(String[] args) {
 		SpringApplication.run(HotelReservationApplication.class, args);
 	}
@@ -56,7 +57,5 @@ public class HotelReservationApplication implements CommandLineRunner {
 
 		hotelDetailsRepo.save(hotelDetails2);
 	}
-
-
 
 	}

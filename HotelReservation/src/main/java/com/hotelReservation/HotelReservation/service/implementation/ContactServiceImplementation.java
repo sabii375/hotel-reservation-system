@@ -22,6 +22,7 @@ public class ContactServiceImplementation implements ContactService {
 
         contact.setName(dto.getName());
         contact.setEmail(dto.getEmail());
+        contact.setMessage(dto.getMessage());
 
         Contact saveContact = contactRepo.save(contact);
 

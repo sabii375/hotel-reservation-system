@@ -90,7 +90,8 @@
                                 </div>
                                 <a th:href="@{/contact}" class="nav-item nav-link">Contact</a>
                             </div>
- 
+                            <a th:href="@{/logout}" th:unless="${#authentication.isAuthenticated()}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block ">Logout<i class="fa fa-arrow-right ms-3"></i></a>
+                            <a th:href="@{/login}" th:if="${#authentication.isAuthenticated()}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block" disabled>Login<i class="fa fa-arrow-right ms-3"></i></a>
                         </div>
                     </nav>
                 </div>
